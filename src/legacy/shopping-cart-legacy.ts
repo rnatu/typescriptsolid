@@ -1,9 +1,13 @@
-import { CartItem } from './interfaces/cart-item';
-import { OrderStatus } from './interfaces/order-status';
+type CartItem = {
+  name: string;
+  price: number;
+};
 
-export class ShoppingCart {
+type OrderStatus = 'open' | 'closed';
+
+export class ShoppingCartLegacy {
   private readonly _items: CartItem[] = [];
-  private _orderStatus: OrderStatus = 'open'; //
+  private _orderStatus: OrderStatus = 'open';
 
   addItem(item: CartItem): void {
     this._items.push(item);
@@ -17,7 +21,6 @@ export class ShoppingCart {
     return this._items;
   }
 
-  //
   get orderStatus(): OrderStatus {
     return this._orderStatus;
   }
@@ -28,7 +31,6 @@ export class ShoppingCart {
       .toFixed(2);
   }
 
-  //
   checkout(): void {
     if (this.isEmpty()) {
       console.log('Seu carrinho está vazio');
@@ -45,12 +47,10 @@ export class ShoppingCart {
     return this.items.length === 0;
   }
 
-  //
   sendMessage(msg: string): void {
     console.log('Mensagem enviada:', msg);
   }
 
-  //
   saveOrder(): void {
     console.log('Pedido salvo com sucesso...');
   }
@@ -60,3 +60,15 @@ export class ShoppingCart {
     this._items.length = 0;
   }
 }
+
+const shoppingCart = new ShoppingCartLegacy();
+
+shoppingCart.addItem({ name: 'Camiseta', price: 49.9 });
+shoppingCart.addItem({ name: 'Caderno', price: 9.9 });
+shoppingCart.addItem({ name: 'Lápis', price: 1.59 });
+
+console.log(shoppingCart.items);
+console.log(shoppingCart.orderStatus);
+console.log(shoppingCart.total());
+shoppingCart.checkout();
+console.log(shoppingCart.orderStatus);
