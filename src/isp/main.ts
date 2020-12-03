@@ -15,18 +15,35 @@ import { Product } from './classes/product';
 
 //classe
 import { Order } from './classes/order';
-import { NoDiscount } from './classes/discount';
+import { NoDiscount /*fiftyPercentDiscount*/ } from './classes/discount';
+import { EnterpriseCustomer /*IndividualCustomer*/ } from './classes/customer';
 
-//dependencias
+//% dependencias
 // const fiftyPercentDiscount = new FiftyPercentDiscount();
 // const tenPercentDiscount = new TenPercentDiscount();
 const noDiscount = new NoDiscount();
+
 const shoppingCart = new ShoppingCart(noDiscount);
 const messaging = new Messaging();
 const persistency = new Persistency();
 
-//injeção de dependencias no construtor
-const order = new Order(shoppingCart, messaging, persistency);
+// const individualCustomer = new IndividualCustomer(
+//   'Renato',
+//   'Xavier',
+//   '123-444-555-50',
+// );
+const enterpriseCustomer = new EnterpriseCustomer(
+  'Empresa Gigante',
+  '222-222-22222-00',
+);
+
+// % injeção de dependencias no construtor
+const order = new Order(
+  shoppingCart,
+  messaging,
+  persistency,
+  enterpriseCustomer,
+);
 
 shoppingCart.addItem(new Product('Camiseta', 49.9));
 shoppingCart.addItem(new Product('Caderno', 9.9));
