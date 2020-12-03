@@ -9,7 +9,10 @@ Classes de alto nível são classes que gerenciam as classes de baixo nível.
 */
 
 //dependencias
-import { Messaging } from './services/messaging';
+
+//% dependencia comentada para utilização do MOCK
+// import { Messaging } from './services/messaging';
+
 import { Persistency } from './services/persistency';
 import { ShoppingCart } from './classes/shopping-cart';
 import { Product } from './classes/product';
@@ -20,13 +23,14 @@ import { NoDiscount /*fiftyPercentDiscount*/ } from './classes/discount';
 import { EnterpriseCustomer /*IndividualCustomer*/ } from './classes/customer';
 import { MessagingProtocol } from './classes/interfaces/messaging-protocol';
 
-//% dependencias
 // const fiftyPercentDiscount = new FiftyPercentDiscount();
 // const tenPercentDiscount = new TenPercentDiscount();
 const noDiscount = new NoDiscount();
-
 const shoppingCart = new ShoppingCart(noDiscount);
-const messaging = new Messaging();
+
+// % instancia comentada para uso do MOCK
+// const messaging = new Messaging();
+
 const persistency = new Persistency();
 
 // const individualCustomer = new IndividualCustomer(
